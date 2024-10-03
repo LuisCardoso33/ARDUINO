@@ -1,52 +1,56 @@
-int pinobotao = 2;
-int estadobotao = 0;
-int pinobotao1 = 3;
-int LED1 = 8;
-int LED4 = 9;
-int LED5 = 10;
-int LED6 = 11;
-int LED7 = 12;
+const int ledBasePin = 2;
+
+ Define os pinos dos botões
+const int botaoliga = 7;
+const int botaopara = 8;
+
+ Variável para controlar o estado de execução
+bool rodando = false;
 
 void setup() {
-  pinMode(LED1,OUTPUT);
-  pinMode(LED4,OUTPUT);
-  pinMode(LED5,OUTPUT);
-  pinMode(LED6,OUTPUT);
-  pinMode(LED7,OUTPUT);
-  pinMode(pinobotao, INPUT);
-  pinMode(pinobotao1, INPUT);
- 
+
+  pinMode(2, OUTPUT); 
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  
+
+
+  pinMode(botaoliga, INPUT);
+  pinMode(botaopara, INPUT);
+
+
 }
 
 void loop() {
-  estadobotao = digitalRead(pinobotao);
-  
-  if (estadobotao == HIGH) {
-  digitalWrite(LED1,HIGH);
-   delay(50);
-   digitalWrite(LED4,HIGH);
-   delay(50);
-   digitalWrite(LED5,HIGH);
-   delay(50);
-   digitalWrite(LED6,HIGH);
-   delay(50);
-   digitalWrite(LED7,HIGH);
-   delay(50);
 
-  } else {
-    // Check the state of the second button
-    if (digitalRead(pinobotao1) == HIGH) {
-      digitalWrite(LED1, LOW);
-      delay(50);
-       digitalWrite(LED4,LOW);
-      delay(50);
-       digitalWrite(LED5,LOW);
-      delay(50);
-       digitalWrite(LED6,LOW);
-      delay(50);
-       digitalWrite(LED7,LOW);
-      delay(50);
-    }
+  if (digitalRead(botaoliga) == HIGH) {
+    rodando = true;
   }
 
+  if (digitalRead(botaopara) == HIGH) {
+    rodando = false;
+  }
+
+  if (rodando) {
+
+    for (int i = 0; i  5; i++) {
+      digitalWrite(ledBasePin + i, HIGH);  
+      delay(200);                         
+
+
+      if (digitalRead(botaopara) == HIGH) {
+        rodando = false;  
+        break;           
+      }
+
+      digitalWrite(ledBasePin + i, LOW);   
+    }
+  } else {
+   
+    for (int i = 0; i  5; i++) {
+      digitalWrite(ledBasePin + i, LOW);   
+    }
+  }
 }
