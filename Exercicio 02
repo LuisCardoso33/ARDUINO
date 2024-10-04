@@ -1,0 +1,20 @@
+int led = 2;
+char teclado;
+void setup() {
+  // put your setup code here, to run once:
+serial.begin(9600);
+pinMode(led,OUTPOUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+teclado = serial.read();
+
+if(teclado == '1'){
+  digitalWrite(led,HIGH);
+}
+if(tecldo == 'd'){
+  digitalWrite(led,LOW);
+}
+delay(10);
+}
