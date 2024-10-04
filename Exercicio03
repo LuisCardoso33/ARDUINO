@@ -1,0 +1,27 @@
+int b1 =2;
+int b2 =3;
+int led =4;
+int statusb1;
+int statusb2;
+void setup() {
+  Serial.begin(9600)
+  pinMode(b1,INPUT);
+  pinMode(b2,INPUT);
+  pinMode(led,OUTPOUT);
+
+}
+
+void loop() {
+  statusb1 = digitalRead(b1);
+  statusb2 = digitalRead(b2);
+  
+  if(statusb1 == HIGH && statusb2 == HIGH){
+    digitalWrite(led,HIGH);
+  }
+  else{
+    digitalWrite(led,LOW);
+  }
+  delay(50);
+  Serial.println(statusb1);
+   Serial.println(statusb2);
+}
