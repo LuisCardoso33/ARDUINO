@@ -1,1 +1,44 @@
+int botao1 = 5;     // Pino do botão 1
+int led1 = 6;       // Pino do LED 1
+int estadoled = 0;  // Estado do LED (0 = OFF, 1 = ON)
+int anterior = 0;   // Estado anterior do botão
+
+int botao = 2;      // Pino do botão 2
+int led = 4;        // Pino do LED 2
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(botao, INPUT);
+  pinMode(led1, OUTPUT);
+  pinMode(botao1, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Lê o estado do botão 1
+  int estadobotao = digitalRead(botao);
+  Serial.println(estadobotao);
+  
+  // Alterna o estado do LED 1 ao pressionar o botão 1
+  if (estadobotao == HIGH && anterior == LOW) {  
+    estadoled = !estadoled; // Alterna o estado
+    digitalWrite(led, estadoled); // Atualiza o LED 1
+    delay(50); // Debounce
+  }
+  
+  anterior = estadobotao; // Atualiza o estado anterior
+
+  // Lê o estado do botão 2
+  int estadobotao1 = digitalRead(botao1);
+  
+  // Alterna o estado do LED 2 ao pressionar o botão 2
+  if (estadobotao1 == HIGH && anterior == LOW) {
+    estadoled = !estadoled; // Alterna o estado
+    digitalWrite(led1, estadoled); // Atualiza o LED 2
+    delay(50); // Debounce
+  }
+  
+  // Atualiza o estado anterior
+  anterior = estadobotao1; 
+}
 
