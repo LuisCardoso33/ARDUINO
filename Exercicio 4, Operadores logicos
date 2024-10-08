@@ -1,1 +1,49 @@
+int pinobotao1 = 2; // Pino do botão 1
+int pinobotao2 = 3; // Pino do botão 2
+int led = 4;        // Pino do LED
+int statuspinobotao1 = 0;
+int statuspinobotao2 = 0;
 
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(pinobotao1, INPUT);
+  pinMode(pinobotao2, INPUT);
+}
+
+void loop() {
+ 
+  int estadoBotao1 = digitalRead(pinobotao1);
+  int estadoBotao2 = digitalRead(pinobotao2);
+  
+
+  if (estadoBotao1 == HIGH || estadoBotao2 == HIGH) {
+    digitalWrite(led, HIGH); // Liga o LED
+  } else {
+    digitalWrite(led, LOW);  // Desliga o LED
+  }
+}                                                                                                                                                                                       
+----------------------------------------------------------------------------------
+int pinobotao1 = 2; // Pino do botão 1
+int pinobotao2 = 3; // Pino do botão 2
+int led = 4;        // Pino do LED
+int statuspinobotao1 = 0;
+int statuspinobotao2 = 0;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(pinobotao1, INPUT);
+  pinMode(pinobotao2, INPUT);
+}
+
+void loop() {
+ 
+  int estadoBotao1 = digitalRead(pinobotao1);
+  int estadoBotao2 = digitalRead(pinobotao2);
+  
+\\LOGICA E
+  if (estadoBotao1 == HIGH && estadoBotao2 == HIGH) {
+    digitalWrite(led, HIGH); // Liga o LED
+  } else {
+    digitalWrite(led, LOW);  // Desliga o LED
+  }
+}                                                                                                                                                                                       
